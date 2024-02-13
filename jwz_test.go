@@ -24,8 +24,8 @@ func TestNewWithPayload(t *testing.T) {
 
 	assert.Equal(t, "groth16", token.Alg)
 	assert.Equal(t, "authV2", token.CircuitID)
-	assert.Equal(t, []HeaderKey{headerCircuitID}, token.raw.Header[headerCritical])
-	assert.Equal(t, "groth16", token.raw.Header[headerAlg])
+	assert.Equal(t, []HeaderKey{headerCircuitID}, token.Raw.Header[headerCritical])
+	assert.Equal(t, "groth16", token.Raw.Header[headerAlg])
 }
 
 func TestToken_Prove(t *testing.T) {
@@ -102,7 +102,7 @@ func TestToken_Parse(t *testing.T) {
 	assert.Equal(t, zkProof.Proof, token.ZkProof.Proof)
 	assert.Equal(t, "authV2", token.CircuitID)
 	assert.Equal(t, "groth16", token.Alg)
-	assert.Equal(t, payloadBytes, token.raw.Payload)
+	assert.Equal(t, payloadBytes, token.Raw.Payload)
 
 }
 
