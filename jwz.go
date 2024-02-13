@@ -35,7 +35,7 @@ type Token struct {
 
 	Raw RawJSONWebZeroknowledge // The raw token.  Populated when you Parse a token
 
-	inputsPreparer ProofInputsPreparerHandlerFunc
+	InputsPreparer ProofInputsPreparerHandlerFunc
 }
 
 // NewWithPayload creates a new Token with the specified proving method and payload.
@@ -45,7 +45,7 @@ func NewWithPayload(prover ProvingMethod, payload []byte, inputsPreparer ProofIn
 		Alg:            prover.Alg(),
 		CircuitID:      prover.CircuitID(),
 		Method:         prover,
-		inputsPreparer: inputsPreparer,
+		InputsPreparer: inputsPreparer,
 	}
 	token.setDefaultHeaders(prover.Alg(), prover.CircuitID())
 	token.setPayload(payload)
@@ -218,7 +218,7 @@ func (token *Token) Prove(provingKey, wasm []byte) (string, error) {
 		return "", err
 	}
 
-	inputs, err := token.inputsPreparer.Prepare(msgHash, circuits.CircuitID(token.CircuitID))
+	inputs, err := token.InputsPreparer.Prepare(msgHash, circuits.CircuitID(token.CircuitID))
 	if err != nil {
 		return "", err
 	}
