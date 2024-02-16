@@ -7,11 +7,8 @@ import (
 	"math/big"
 
 	"github.com/iden3/go-circuits/v2"
-	"github.com/iden3/go-rapidsnark/prover"
 	"github.com/iden3/go-rapidsnark/types"
 	"github.com/iden3/go-rapidsnark/verifier"
-	"github.com/iden3/go-rapidsnark/witness/v2"
-	"github.com/iden3/go-rapidsnark/witness/wazero"
 )
 
 const (
@@ -33,12 +30,6 @@ var (
 )
 
 // nolint : used for init proving method instance
-func init() {
-	ProvingMethodGroth16AuthInstance = &ProvingMethodGroth16Auth{AuthGroth16Alg}
-	RegisterProvingMethod(ProvingMethodGroth16AuthInstance.ProvingMethodAlg, func() ProvingMethod {
-		return ProvingMethodGroth16AuthInstance
-	})
-}
 
 // Alg returns current zk alg
 func (m *ProvingMethodGroth16Auth) Alg() string {
@@ -69,25 +60,4 @@ func (m *ProvingMethodGroth16Auth) Verify(messageHash []byte, proof *types.ZKPro
 	}
 
 	return verifier.VerifyGroth16(*proof, verificationKey)
-}
-
-// Prove generates proof using auth circuit and Groth16 alg, checks that proven message hash is set as a part of circuit specific inputs
-func (m *ProvingMethodGroth16Auth) Prove(inputs, provingKey, wasm []byte) (*types.ZKProof, error) {
-	calc, err := witness.NewCalculator(wasm,
-		witness.WithWasmEngine(wazero.NewCircom2WZWitnessCalculator))
-	if err != nil {
-		return nil, err
-	}
-
-	parsedInputs, err := witness.ParseInputs(inputs)
-	if err != nil {
-		return nil, err
-	}
-
-	wtnsBytes, err := calc.CalculateWTNSBin(parsedInputs, true)
-	if err != nil {
-		return nil, err
-	}
-	return prover.Groth16Prover(provingKey, wtnsBytes)
-
 }
