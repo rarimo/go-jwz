@@ -4,15 +4,14 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"errors"
-	"io"
-	"math/big"
-	"sync"
-
-	"github.com/iden3/go-circuits/v2"
 	"github.com/iden3/go-rapidsnark/types"
 	"github.com/iden3/go-rapidsnark/verifier"
 	"github.com/iden3/go-rapidsnark/witness/v2"
 	"github.com/iden3/go-rapidsnark/witness/wazero"
+	"github.com/rarimo/go-circuits"
+	"io"
+	"math/big"
+	"sync"
 )
 
 // AuthV2Groth16Alg its auth v2 alg (groth16 vs auth v2 circuit)

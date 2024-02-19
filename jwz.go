@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/iden3/go-circuits/v2"
 	"github.com/iden3/go-rapidsnark/types"
+	"github.com/rarimo/go-circuits"
 )
 
 // HeaderKey represents type for jwz headers keys

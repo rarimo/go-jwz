@@ -6,9 +6,9 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/iden3/go-circuits/v2"
 	"github.com/iden3/go-rapidsnark/types"
 	"github.com/iden3/go-rapidsnark/verifier"
+	"github.com/rarimo/go-circuits"
 )
 
 const (

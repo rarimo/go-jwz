@@ -3,8 +3,8 @@ package jwz
 import (
 	"sync"
 
-	"github.com/iden3/go-circuits/v2"
 	"github.com/iden3/go-rapidsnark/types"
+	"github.com/rarimo/go-circuits"
 )
 
 // ProvingMethodAlg defines proofs family and specific circuit

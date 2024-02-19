@@ -3,12 +3,12 @@ module github.com/rarimo/go-jwz
 go 1.18
 
 require (
-	github.com/iden3/go-circuits/v2 v2.0.1
 	github.com/iden3/go-iden3-crypto v0.0.15
 	github.com/iden3/go-rapidsnark/types v0.0.3
 	github.com/iden3/go-rapidsnark/verifier v0.0.5
 	github.com/iden3/go-rapidsnark/witness/v2 v2.0.0
 	github.com/iden3/go-rapidsnark/witness/wazero v0.0.0-20230524142950-0986cf057d4e
+	github.com/rarimo/go-circuits v1.0.1
 	github.com/stretchr/testify v1.8.2
 )
 
